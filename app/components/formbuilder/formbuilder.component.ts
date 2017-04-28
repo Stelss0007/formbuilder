@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormbuilderService, FormbuilderItem } from './services/formbuilder.service';
+import { FormbuilderService } from './services/formbuilder.service';
 
 
 
@@ -12,16 +12,22 @@ import { FormbuilderService, FormbuilderItem } from './services/formbuilder.serv
 })
 
 export class FormbuilderComponent {
-    items = [
-        {name: "Apple", type: "fruit"},
-        {name: "Carrot", type: "vegetable"},
-        {name: "Orange", type: "fruit"}
-    ];
+    items:any [];
+    droppedItems:any = [];
 
-    droppedItems: = [];
+    formService: FormbuilderService;
 
-    onItemDrop(e: any) {
+    constructor(){
+        this.formService = new FormbuilderService();
+        this.items = this.formService.getItems();
+    }
+
+    addElementToForm(item:any):void {
+        this.droppedItems.push(item);
+    }
+
+    onItemDrop(e: any):void {
         // Get the dropped data here
-        this.droppedItems.push(e.dragData);
+        this.addElementToForm(e.dragData);
     }
 }

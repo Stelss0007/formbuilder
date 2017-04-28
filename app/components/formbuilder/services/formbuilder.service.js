@@ -42,18 +42,78 @@ var FormbuilderService = (function () {
                 },
                 "type": "textfield"
             },
+            {
+                "input": true,
+                "tableView": true,
+                "inputType": "email",
+                "inputMask": "",
+                "label": "Email",
+                "key": "firstName",
+                "placeholder": "Enter your email",
+                "prefix": "",
+                "suffix": "",
+                "multiple": false,
+                "defaultValue": "",
+                "protected": false,
+                "unique": false,
+                "persistent": true,
+                "validate": {
+                    "required": false,
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "custom": "",
+                    "customPrivate": false
+                },
+                "conditional": {
+                    "show": false,
+                    "when": null,
+                    "eq": ""
+                },
+                "type": "textfield"
+            },
+            {
+                "input": true,
+                "tableView": true,
+                "inputType": "text",
+                "inputMask": "",
+                "label": "Phone",
+                "key": "firstName",
+                "placeholder": "Enter your phone",
+                "prefix": "",
+                "suffix": "",
+                "multiple": false,
+                "defaultValue": "",
+                "protected": false,
+                "unique": false,
+                "persistent": true,
+                "validate": {
+                    "required": false,
+                    "minLength": "",
+                    "maxLength": "",
+                    "pattern": "",
+                    "custom": "",
+                    "customPrivate": false
+                },
+                "conditional": {
+                    "show": false,
+                    "when": null,
+                    "eq": ""
+                },
+                "type": "textfield"
+            },
         ];
     }
     FormbuilderService.prototype.getItems = function () {
         return this.components;
     };
     FormbuilderService.prototype.addItem = function (item) {
-        this.components.push();
+        this.components.push(item);
     };
     FormbuilderService.prototype.removeItem = function (item) {
-        var index = this.data.indexOf(item);
+        var index = this.components.indexOf(item);
         if (index !== -1) {
-            this.data.splice(index, 1);
+            this.components.splice(index, 1);
         }
     };
     return FormbuilderService;

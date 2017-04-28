@@ -1,12 +1,13 @@
 <div class="page-header">
-    <h1> Список контактов </h1>
+    <h1> Редактор форм </h1>
 </div>
 <div class="panel">
-    <h3>Transfer Data via Drag Drop</h3>
     <div class="row">
         <div class="col-sm-3">
             <ul class="list-group">
-                <li draggable *ngFor="let item of items" [dragData]="item" class="list-group-item">{{item.name}}</li>
+                <li draggable *ngFor="let item of items" [dragData]="item" class="list-group-item" (click)="addElementToForm(item)">
+                    {{item.inputType}}
+                </li>
             </ul>
         </div>
 
@@ -16,8 +17,8 @@
                 <div class="panel-body">
                     <form>
                         <div class="form-group" *ngFor="let item of droppedItems">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                            <label for="exampleInputEmail1">{{item.label}}</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{item.placeholder}}">
                         </div>
                     </form>
                 </div>
