@@ -1,0 +1,27 @@
+<div class="page-header">
+    <h1> Список контактов </h1>
+</div>
+<div class="panel">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th width="100">Email</th>
+            <th width="100">Phone</th>
+            <th width="140"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of items">
+            <td>{{item.firstName}} {{item.lastName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.phone}}</td>
+            <td>
+                <span class="btn btn-default" (click)="viewItem(item)"><span class="fa fa-eye"></span></span>
+                <span class="btn btn-default" (click)="editItem(item)"><span class="fa fa-edit"></span></span>
+                <span class="btn btn-danger" (click)="removeItem(item)"><span class="fa fa-trash"></span></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
