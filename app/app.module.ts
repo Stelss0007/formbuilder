@@ -4,7 +4,6 @@ import { FormsModule }   from '@angular/forms';
 
 //Подключаем модуль роутера
 import {Routes, RouterModule} from '@angular/router';
-import {Ng2DragDropModule} from "ng2-drag-drop";
 
 //Подключаем наши компоненты
 import { AppComponent }   from './app.component';
@@ -13,6 +12,7 @@ import { HomeComponent }   from './components/home/home.component';
 import { AboutComponent }   from './components/about/about.component';
 import { ShopComponent }   from './components/shop/shop.component';
 import { ContactComponent }   from './components/contacts/contacts.component';
+import {DndModule} from 'ng2-dnd';
 import { FormbuilderComponent }   from './components/formbuilder/formbuilder.component';
 
 // определение маршрутов
@@ -31,7 +31,7 @@ const appRoutes: Routes =[
         BrowserModule,
         FormsModule,
         RouterModule.forRoot(appRoutes),
-        Ng2DragDropModule
+        DndModule.forRoot()
     ],
 
     // Обявляем наши (созданые нами, сторонние) компоненты

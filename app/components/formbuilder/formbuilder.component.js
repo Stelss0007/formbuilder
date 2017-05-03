@@ -11,17 +11,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var formbuilder_service_1 = require("./services/formbuilder.service");
 var FormbuilderComponent = (function () {
-    function FormbuilderComponent() {
+    function FormbuilderComponent(elementRef, viewContainer) {
+        this.elementRef = elementRef;
+        this.viewContainer = viewContainer;
         this.droppedItems = [];
+        this.sourceList = [
+            new Widget('1'), new Widget('2'),
+            new Widget('3'), new Widget('4'),
+            new Widget('5'), new Widget('6')
+        ];
+        this.targetList = [];
+        this.el = viewContainer.element.nativeElement;
         this.formService = new formbuilder_service_1.FormbuilderService();
         this.items = this.formService.getItems();
     }
-    FormbuilderComponent.prototype.addElementToForm = function (item) {
-        this.droppedItems.push(item);
+    FormbuilderComponent.prototype.addItemAfterDrop = function ($event) {
+        //console.log($event);
+        var position = this.checkPosition($event);
+        console.log(position);
+        this.targetList.splice(position, 0, $event.dragData);
+        //this.targetList.push($event.dragData);
     };
-    FormbuilderComponent.prototype.onItemDrop = function (e) {
-        // Get the dropped data here
-        this.addElementToForm(e.dragData);
+    FormbuilderComponent.prototype.checkPosition = function ($event) {
+        var formbuilder = document.querySelector("formbuilder");
+        var elements = document.querySelectorAll("formbuilder .form-group");
+        var formbuilderOffsetTop = formbuilder.offsetTop + 100;
+        for (var key = 0; key < elements.length; ++key) {
+            console.log('test');
+            var element = elements[key];
+            var elementTop = element.offsetTop + formbuilderOffsetTop;
+            console.log(elementTop + '<' + $event.mouseEvent.pageY + ' && ' + (elementTop + element.offsetHeight) + '>' + $event.mouseEvent.pageY);
+            if (elementTop < $event.mouseEvent.pageY && (elementTop + element.offsetHeight) > $event.mouseEvent.pageY) {
+                return key;
+            }
+        }
+        return elements.length;
+    };
+    FormbuilderComponent.prototype.addItem = function (item) {
+        this.targetList.push(item);
+    };
+    FormbuilderComponent.prototype.removeItem = function (item) {
+        var index = this.targetList.indexOf(item);
+        if (index !== -1) {
+            this.targetList.splice(index, 1);
+        }
     };
     return FormbuilderComponent;
 }());
@@ -33,7 +66,13 @@ FormbuilderComponent = __decorate([
         styleUrls: ['styles/style.css'],
         providers: [formbuilder_service_1.FormbuilderService],
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [core_1.ElementRef, core_1.ViewContainerRef])
 ], FormbuilderComponent);
 exports.FormbuilderComponent = FormbuilderComponent;
+var Widget = (function () {
+    function Widget(name) {
+        this.name = name;
+    }
+    return Widget;
+}());
 //# sourceMappingURL=formbuilder.component.js.map

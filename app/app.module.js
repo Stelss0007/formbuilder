@@ -10,7 +10,6 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 //Подключаем модуль роутера
 var router_1 = require("@angular/router");
-var ng2_drag_drop_1 = require("ng2-drag-drop");
 //Подключаем наши компоненты
 var app_component_1 = require("./app.component");
 var child_component_1 = require("./child.component");
@@ -18,6 +17,7 @@ var home_component_1 = require("./components/home/home.component");
 var about_component_1 = require("./components/about/about.component");
 var shop_component_1 = require("./components/shop/shop.component");
 var contacts_component_1 = require("./components/contacts/contacts.component");
+var ng2_dnd_1 = require("ng2-dnd");
 var formbuilder_component_1 = require("./components/formbuilder/formbuilder.component");
 // определение маршрутов
 var appRoutes = [
@@ -41,7 +41,7 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             router_1.RouterModule.forRoot(appRoutes),
-            ng2_drag_drop_1.Ng2DragDropModule
+            ng2_dnd_1.DndModule.forRoot()
         ],
         // Обявляем наши (созданые нами, сторонние) компоненты
         declarations: [

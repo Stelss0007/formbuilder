@@ -1,0 +1,28 @@
+<div class="page-header">
+    <h1> Редактор форм </h1>
+</div>
+<div class="panel">
+    <div class="row">
+        <div class="col-sm-3">
+            <ul class="list-group">
+                <li draggable *ngFor="let item of items" [dragData]="item" class="list-group-item" (click)="addElementToForm(item)">
+                    {{item.inputType}}
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="panel panel-default" droppable (onDrop)="onItemDrop($event)">
+                <div class="panel-heading">Drop Items here</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group" *ngFor="let item of droppedItems">
+                            <label for="exampleInputEmail1">{{item.label}}</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{item.placeholder}}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

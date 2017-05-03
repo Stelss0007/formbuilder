@@ -20,7 +20,7 @@
       // остальные пакеты
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'ng2-drag-drop': 'node_modules/ng2-drag-drop'
+      'ng2-dnd': 'node_modules/ng2-dnd/bundles/index.umd.js'
     },
     // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
     packages: {
@@ -30,11 +30,7 @@
       },
       rxjs: {
         defaultExtension: 'js'
-      },
-      'ng2-drag-drop':  {
-          main: 'index.js',
-          defaultExtension: 'js'
-      },
+      }
     }
   });
 })(this);

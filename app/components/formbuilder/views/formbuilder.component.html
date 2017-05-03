@@ -1,27 +1,38 @@
-<div class="page-header">
-    <h1> Редактор форм </h1>
-</div>
-<div class="panel">
-    <div class="row">
-        <div class="col-sm-3">
-            <ul class="list-group">
-                <li draggable *ngFor="let item of items" [dragData]="item" class="list-group-item" (click)="addElementToForm(item)">
-                    {{item.inputType}}
-                </li>
-            </ul>
+<h4>Simple sortable With Drop into something, without delete it</h4>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="panel panel-warning"
+             dnd-sortable-container [sortableData]="sourceList" [dropZones]="['source-dropZone']">
+            <div class="panel-heading">Source List</div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li *ngFor="let item of items; let x = index"
+                        class="list-group-item avaiable-item"
+                        dnd-sortable [sortableIndex]="x"
+                        [dragEnabled]="true"
+                        [dragData]="item"
+                        (click)="addItem(item)"
+                    >
+                        <i class="fa {{item.icon}}"></i>
+                        {{item.label}}
+                    </li>
+                </ul>
+            </div>
         </div>
-
-        <div class="col-sm-9">
-            <div class="panel panel-default" droppable (onDrop)="onItemDrop($event)">
-                <div class="panel-heading">Drop Items here</div>
-                <div class="panel-body">
-                    <form>
-                        <div class="form-group" *ngFor="let item of droppedItems">
-                            <label for="exampleInputEmail1">{{item.label}}</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{item.placeholder}}">
+    </div>
+    <div class="col-sm-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">Target List</div>
+            <div class="panel-body" dnd-droppable (onDropSuccess)="addItemAfterDrop($event)" [dropZones]="['source-dropZone']">
+                <form dnd-sortable-container [sortableData]="targetList">
+                    <div class="form-group" *ngFor="let item of targetList; let i = index" dnd-sortable [sortableIndex]="i">
+                        <div class="control-panel">
+                            <i class="fa fa-remove" (click)="removeItem(item)"></i>
                         </div>
-                    </form>
-                </div>
+                        <label for="exampleInputEmail1">{{item.label}}</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{item.placeholder}}">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
