@@ -12,8 +12,10 @@ import { HomeComponent }   from './components/home/home.component';
 import { AboutComponent }   from './components/about/about.component';
 import { ShopComponent }   from './components/shop/shop.component';
 import { ContactComponent }   from './components/contacts/contacts.component';
+import {TabsModule} from "ng2-tabs";
 import {DndModule} from 'ng2-dnd';
 import { FormbuilderComponent }   from './components/formbuilder/formbuilder.component';
+import {ColorPickerModule} from 'angular2-color-picker';
 
 // определение маршрутов
 const appRoutes: Routes =[
@@ -30,8 +32,10 @@ const appRoutes: Routes =[
     imports:      [
         BrowserModule,
         FormsModule,
+        TabsModule,
         RouterModule.forRoot(appRoutes),
-        DndModule.forRoot()
+        DndModule.forRoot(),
+        ColorPickerModule,
     ],
 
     // Обявляем наши (созданые нами, сторонние) компоненты

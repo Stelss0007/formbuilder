@@ -20,7 +20,9 @@
       // остальные пакеты
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'ng2-dnd': 'node_modules/ng2-dnd/bundles/index.umd.js'
+      'ng2-dnd': 'node_modules/ng2-dnd/bundles/index.umd.js',
+      'ng2-tabs': 'node_modules/ng2-tabs',
+      'angular2-color-picker': 'node_modules/angular2-color-picker'
     },
     // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
     packages: {
@@ -30,7 +32,9 @@
       },
       rxjs: {
         defaultExtension: 'js'
-      }
+      },
+      "ng2-tabs": { "main": "index.js", "defaultExtension": "js" },
+      'angular2-color-picker': {main:'index.js', defaultExtension: 'js'}
     }
   });
 })(this);

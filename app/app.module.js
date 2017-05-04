@@ -17,8 +17,10 @@ var home_component_1 = require("./components/home/home.component");
 var about_component_1 = require("./components/about/about.component");
 var shop_component_1 = require("./components/shop/shop.component");
 var contacts_component_1 = require("./components/contacts/contacts.component");
+var ng2_tabs_1 = require("ng2-tabs");
 var ng2_dnd_1 = require("ng2-dnd");
 var formbuilder_component_1 = require("./components/formbuilder/formbuilder.component");
+var angular2_color_picker_1 = require("angular2-color-picker");
 // определение маршрутов
 var appRoutes = [
     { path: '', component: home_component_1.HomeComponent },
@@ -40,8 +42,10 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
+            ng2_tabs_1.TabsModule,
             router_1.RouterModule.forRoot(appRoutes),
-            ng2_dnd_1.DndModule.forRoot()
+            ng2_dnd_1.DndModule.forRoot(),
+            angular2_color_picker_1.ColorPickerModule,
         ],
         // Обявляем наши (созданые нами, сторонние) компоненты
         declarations: [

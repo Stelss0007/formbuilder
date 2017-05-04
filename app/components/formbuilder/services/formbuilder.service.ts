@@ -6,6 +6,270 @@ export class FormbuilderService {
 
     private components:any = [
         {
+            "icon": "fa-terminal",
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "Short Text",
+            "key": "phone",
+            "placeholder": "Short Text",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": false,
+                "minLength": "",
+                "maxLength": "",
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+            },
+            "conditional": {
+                "show": false,
+                "when": null,
+                "eq": ""
+            },
+            "type": "textfield"
+        },
+
+        {
+            "icon": "fa-sticky-note-o",
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "TextArea",
+            "key": "phone",
+            "placeholder": "Long Text",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": false,
+                "minLength": "",
+                "maxLength": "",
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+            },
+            "conditional": {
+                "show": false,
+                "when": null,
+                "eq": ""
+            },
+            "type": "textarea"
+        },
+
+        {
+            "icon": "fa-asterisk",
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "Password",
+            "key": "phone",
+            "placeholder": "Password",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": false,
+                "minLength": "",
+                "maxLength": "",
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+            },
+            "conditional": {
+                "show": false,
+                "when": null,
+                "eq": ""
+            },
+            "type": "password"
+        },
+
+        {
+            "icon": "fa-hashtag",
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "Number",
+            "key": "phone",
+            "placeholder": "Number",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": false,
+                "minLength": "",
+                "maxLength": "",
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+            },
+            "conditional": {
+                "show": false,
+                "when": null,
+                "eq": ""
+            },
+            "type": "number"
+        },
+
+        {
+            "icon": "fa-check-square",
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "CheckBox",
+            "key": "phone",
+            "placeholder": "CheckBox",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": false,
+                "minLength": "",
+                "maxLength": "",
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+            },
+            "conditional": {
+                "show": false,
+                "when": null,
+                "eq": ""
+            },
+            "type": "checkbox"
+        },
+
+        {
+            "icon": "fa-dot-circle-o",
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "Radio",
+            "key": "phone",
+            "placeholder": "Radio",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": false,
+                "minLength": "",
+                "maxLength": "",
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+            },
+            "conditional": {
+                "show": false,
+                "when": null,
+                "eq": ""
+            },
+            "type": "radio"
+        },
+
+        {
+            "icon": "fa-list",
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "Select",
+            "key": "phone",
+            "placeholder": "Select",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": false,
+                "minLength": "",
+                "maxLength": "",
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+            },
+            "conditional": {
+                "show": false,
+                "when": null,
+                "eq": ""
+            },
+            "type": "select",
+            "options": [
+                "Value 1",
+                "Value 2",
+                "Value 3",
+                "Value 4",
+            ],
+        },
+
+        {
+            "icon": "fa-font",
+            "input": true,
+            "tableView": true,
+            "inputType": "text",
+            "inputMask": "",
+            "label": "Text",
+            "key": "phone",
+            "placeholder": "Text",
+            "prefix": "",
+            "suffix": "",
+            "multiple": false,
+            "defaultValue": "",
+            "protected": false,
+            "unique": false,
+            "persistent": true,
+            "validate": {
+                "required": false,
+                "minLength": "",
+                "maxLength": "",
+                "pattern": "",
+                "custom": "",
+                "customPrivate": false
+            },
+            "conditional": {
+                "show": false,
+                "when": null,
+                "eq": ""
+            },
+            "type": "text",
+            "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores aut cumque cupiditate dignissimos dolore dolores eligendi enim ..."
+        },
+
+        // ====================================== //
+        {
             "icon": "fa-user",
             "input": true,
             "tableView": true,
@@ -224,37 +488,6 @@ export class FormbuilderService {
             "type": "textfield"
         },
 
-        {
-            "icon": "fa-terminal",
-            "input": true,
-            "tableView": true,
-            "inputType": "text",
-            "inputMask": "",
-                "label": "Short Text",
-            "key": "phone",
-            "placeholder": "Short Text",
-            "prefix": "",
-            "suffix": "",
-            "multiple": false,
-            "defaultValue": "",
-            "protected": false,
-            "unique": false,
-            "persistent": true,
-            "validate": {
-                "required": false,
-                "minLength": "",
-                "maxLength": "",
-                "pattern": "",
-                "custom": "",
-                "customPrivate": false
-            },
-            "conditional": {
-                "show": false,
-                "when": null,
-                "eq": ""
-            },
-            "type": "textfield"
-        },
     ];
 
     constructor(){

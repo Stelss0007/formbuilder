@@ -10,31 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var formbuilder_service_1 = require("./services/formbuilder.service");
+var angular2_color_picker_1 = require("angular2-color-picker");
 var FormbuilderComponent = (function () {
-    function FormbuilderComponent(elementRef, viewContainer) {
-        this.elementRef = elementRef;
-        this.viewContainer = viewContainer;
+    function FormbuilderComponent(cpService) {
+        this.cpService = cpService;
         this.droppedItems = [];
-        this.sourceList = [
-            new Widget('1'), new Widget('2'),
-            new Widget('3'), new Widget('4'),
-            new Widget('5'), new Widget('6')
-        ];
-        this.targetList = [];
-        this.el = viewContainer.element.nativeElement;
         this.formService = new formbuilder_service_1.FormbuilderService();
+        this.form = new Form();
         this.items = this.formService.getItems();
+        console.log(this.form);
     }
     FormbuilderComponent.prototype.addItemAfterDrop = function ($event) {
         //console.log($event);
         var position = this.checkPosition($event);
         console.log(position);
-        this.targetList.splice(position, 0, $event.dragData);
+        this.form.items.splice(position, 0, $event.dragData);
         //this.targetList.push($event.dragData);
     };
     FormbuilderComponent.prototype.checkPosition = function ($event) {
         var formbuilder = document.querySelector("formbuilder");
-        var elements = document.querySelectorAll("formbuilder .form-group");
+        var elements = document.querySelectorAll("formbuilder .form-elements-list");
         var formbuilderOffsetTop = formbuilder.offsetTop + 100;
         for (var key = 0; key < elements.length; ++key) {
             console.log('test');
@@ -48,12 +43,12 @@ var FormbuilderComponent = (function () {
         return elements.length;
     };
     FormbuilderComponent.prototype.addItem = function (item) {
-        this.targetList.push(item);
+        this.form.items.push(item);
     };
     FormbuilderComponent.prototype.removeItem = function (item) {
-        var index = this.targetList.indexOf(item);
+        var index = this.form.items.indexOf(item);
         if (index !== -1) {
-            this.targetList.splice(index, 1);
+            this.form.items.splice(index, 1);
         }
     };
     return FormbuilderComponent;
@@ -66,13 +61,29 @@ FormbuilderComponent = __decorate([
         styleUrls: ['styles/style.css'],
         providers: [formbuilder_service_1.FormbuilderService],
     }),
-    __metadata("design:paramtypes", [core_1.ElementRef, core_1.ViewContainerRef])
+    __metadata("design:paramtypes", [angular2_color_picker_1.ColorPickerService])
 ], FormbuilderComponent);
 exports.FormbuilderComponent = FormbuilderComponent;
-var Widget = (function () {
-    function Widget(name) {
-        this.name = name;
+var Form = (function () {
+    function Form() {
+        this.default = {
+            colors: ['#fff', '#000', '#2889e9', '#e920e9', '#fff500', 'rgb(236,64,64)'],
+        };
+        this.styles = {
+            formWidth: '100%',
+            labelAlign: 'top',
+            fontFamily: 'Arial',
+            fontSize: '12px',
+        };
+        this.name = 'Test Form Name';
+        this.colors = {
+            colorPage: 'none',
+            colorForm: 'none',
+            colorFont: '#000',
+        };
+        this.items = [];
+        this.css = "";
     }
-    return Widget;
+    return Form;
 }());
 //# sourceMappingURL=formbuilder.component.js.map

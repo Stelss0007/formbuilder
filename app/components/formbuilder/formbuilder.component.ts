@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { FormbuilderService } from './services/formbuilder.service';
+import {ColorPickerService} from 'angular2-color-picker';
 
 @Component({
     selector: 'formbuilder',
@@ -9,32 +10,23 @@ import { FormbuilderService } from './services/formbuilder.service';
     providers: [FormbuilderService],
 })
 
-
-
 export class FormbuilderComponent {
     items:any [];
     droppedItems:any = [];
-    el:any;
     formService: FormbuilderService;
+    form: Form;
 
-    sourceList: Widget[] = [
-        new Widget('1'), new Widget('2'),
-        new Widget('3'), new Widget('4'),
-        new Widget('5'), new Widget('6')
-    ];
-
-    targetList: Widget[] = [];
     addItemAfterDrop($event: any) {
         //console.log($event);
         let position = this.checkPosition($event);
         console.log(position);
-        this.targetList.splice(position, 0, $event.dragData);
+        this.form.items.splice(position, 0, $event.dragData);
         //this.targetList.push($event.dragData);
     }
 
     checkPosition($event: any) {
         let formbuilder = document.querySelector("formbuilder");
-        let elements = document.querySelectorAll("formbuilder .form-group");
+        let elements = document.querySelectorAll("formbuilder .form-elements-list");
         let formbuilderOffsetTop = formbuilder.offsetTop + 100;
 
         for (let key = 0; key < elements.length; ++key) {
@@ -51,25 +43,44 @@ export class FormbuilderComponent {
     }
 
     addItem(item: any) {
-        this.targetList.push(item);
+        this.form.items.push(item);
     }
 
     removeItem(item: any): void {
-        let index: number = this.targetList.indexOf(item);
+        let index: number = this.form.items.indexOf(item);
         if (index !== -1) {
-            this.targetList.splice(index, 1);
+            this.form.items.splice(index, 1);
         }
     }
 
 
-    constructor(private elementRef:ElementRef, private viewContainer:ViewContainerRef,) {
-        this.el = viewContainer.element.nativeElement;
+    constructor(private cpService: ColorPickerService) {
         this.formService = new FormbuilderService();
+
+        this.form = new Form();
         this.items = this.formService.getItems();
+
+        console.log(this.form);
     }
 
 }
 
-class Widget {
-    constructor(public name: string) {}
+class Form {
+    default: any = {
+        colors: ['#fff', '#000', '#2889e9', '#e920e9', '#fff500', 'rgb(236,64,64)'],
+    };
+    styles: any =  {
+        formWidth: '100%',
+        labelAlign: 'top',
+        fontFamily: 'Arial',
+        fontSize: '12px',
+    };
+    name: string = 'Test Form Name';
+    colors: any =   {
+        colorPage: 'none',
+        colorForm: 'none',
+        colorFont: '#000',
+    };
+    items: any = [];
+    css: string = "";
 }

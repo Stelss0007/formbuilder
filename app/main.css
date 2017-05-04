@@ -1,5 +1,6 @@
 body {
     padding-top: 50px;
+    background: #f1f1f1;
 }
 
 .loader {
@@ -14,4 +15,53 @@ body {
 .loader .loader-text {
     margin-top: 10px;
     text-align: center;
+}
+
+/*Tabs*/
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    color: #f1f1f1;
+    background: none;
+    border: none;
+    border-bottom: 4px solid #3a3a3a;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background: none;
+    color: #f1f1f1;
+    border-bottom: 4px solid #3a3a3a;
+}
+
+.nav-tabs>li>a {
+    border-radius: 0;
+    border: none;
+    color: #f1f1f1;
+    text-transform: uppercase;
+}
+
+.tabset-content {
+    padding-top: 10px;
+    color: #f1f1f1;
+}
+
+.nav-tabs {
+    border-bottom: none;
+}
+
+.nav-tabs .btn:active {
+    box-shadow: none;
+}
+
+.tabset-content {
+    padding: 10px;
+}
+
+.panel.elements .tabset-content {
+    padding: 10px 0;
+}
+
+
+.color-picker {
+    color: #3a3a3a;
 }

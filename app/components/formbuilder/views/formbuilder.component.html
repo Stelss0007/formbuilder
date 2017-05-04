@@ -1,38 +1,175 @@
-<h4>Simple sortable With Drop into something, without delete it</h4>
 <div class="row">
     <div class="col-sm-3">
-        <div class="panel panel-warning"
-             dnd-sortable-container [sortableData]="sourceList" [dropZones]="['source-dropZone']">
-            <div class="panel-heading">Source List</div>
+        <div class="panel panel-default elements"
+             dnd-sortable-container
+             [sortableData]="sourceList"
+             [dropZones]="['source-dropZone']"
+        >
+            <div class="panel-heading">Form Elements</div>
             <div class="panel-body">
-                <ul class="list-group">
-                    <li *ngFor="let item of items; let x = index"
-                        class="list-group-item avaiable-item"
-                        dnd-sortable [sortableIndex]="x"
-                        [dragEnabled]="true"
-                        [dragData]="item"
-                        (click)="addItem(item)"
-                    >
-                        <i class="fa {{item.icon}}"></i>
-                        {{item.label}}
-                    </li>
-                </ul>
+                <tabset>
+                    <tab title="Basic">
+                        <ul class="list-group">
+                            <li *ngFor="let item of items; let x = index"
+                                class="list-group-item avaiable-item"
+                                dnd-sortable [sortableIndex]="x"
+                                [dragEnabled]="true"
+                                [dragData]="item"
+                                (click)="addItem(item)"
+                            >
+                                <i class="fa {{item.icon}}"></i>
+                                {{item.label}}
+                            </li>
+                        </ul>
+                    </tab>
+                    <tab title="Widgets">
+                        This is content of the contacts tab
+                    </tab>
+                </tabset>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
-        <div class="panel panel-info">
-            <div class="panel-heading">Target List</div>
-            <div class="panel-body" dnd-droppable (onDropSuccess)="addItemAfterDrop($event)" [dropZones]="['source-dropZone']">
-                <form dnd-sortable-container [sortableData]="targetList">
-                    <div class="form-group" *ngFor="let item of targetList; let i = index" dnd-sortable [sortableIndex]="i">
-                        <div class="control-panel">
-                            <i class="fa fa-remove" (click)="removeItem(item)"></i>
+        <div class="panel panel-default form-palete">
+            <div class="panel-body"
+                 dnd-droppable
+                 (onDropSuccess)="addItemAfterDrop($event)"
+                 [dropZones]="['source-dropZone']"
+                 [style.background]="form.colors.colorPage"
+            >
+                <form
+                        dnd-sortable-container
+                        [sortableData]="form.items"
+                        [style.color]="form.colors.colorFont"
+                        [style.background]="form.colors.colorForm"
+                >
+                    <div class="form-elements-list" *ngFor="let item of form.items; let i = index" dnd-sortable [sortableIndex]="i">
+                        <div class="form-group" [ngSwitch]="item.type">
+                            <div class="control-panel">
+                                <i class="fa fa-arrows"></i>
+                                <i class="fa fa-cog" (click)="editItem(item)"></i>
+                                <i class="fa fa-remove" (click)="removeItem(item)"></i>
+                            </div>
+
+                            <div *ngSwitchCase="'textfield'">
+                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                <input type="text" class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}">
+                            </div>
+                            <div *ngSwitchCase="'textarea'">
+                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                <textarea class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}"></textarea>
+                            </div>
+                            <div *ngSwitchCase="'password'">
+                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                <input type="password" class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}">
+                            </div>
+                            <div *ngSwitchCase="'number'">
+                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                <input type="number" class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}">
+                            </div>
+                            <div *ngSwitchCase="'checkbox'">
+                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                <input type="checkbox"  id="{{item.type}}_{{i}}" >
+                            </div>
+                            <div *ngSwitchCase="'radio'">
+                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                <input type="radio"  id="{{item.type}}_{{i}}" >
+                            </div>
+                            <div *ngSwitchCase="'select'">
+                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                <select class="form-control" id="{{item.type}}_{{i}}">
+                                    <option *ngFor="let option of item.options;" value="{{option}}">{{option}}</option>
+                                </select>
+                            </div>
+                            <div *ngSwitchCase="'text'">
+                                <div id="{{item.type}}_{{i}}" >{{item.content}}</div>
+                            </div>
                         </div>
-                        <label for="exampleInputEmail1">{{item.label}}</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{item.placeholder}}">
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="panel panel-default settings ">
+            <div class="panel-heading">Properties</div>
+            <div class="panel-body">
+                <tabset>
+                    <tab title="Colors">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Font Color:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon" [style.background]="form.colors.colorFont">&nbsp;</div>
+                                        <input
+                                                class="form-control"
+                                                [(colorPicker)]="form.colors.colorFont"
+                                                [value]="form.colors.colorFont"
+                                                [cpPosition]="'bottom'"
+                                                [cpPresetColors]="form.default.colors"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Page Background Color:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon" [style.background]="form.colors.colorPage">&nbsp;</div>
+                                        <input
+                                                class="form-control"
+                                                [(colorPicker)]="form.colors.colorPage"
+                                                [value]="form.colors.colorPage"
+                                                [cpPosition]="'bottom'"
+                                                [cpPresetColors]="form.default.colorPage"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Form Background Color:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon" [style.background]="form.colors.colorForm">&nbsp;</div>
+                                        <input
+                                                class="form-control"
+                                                [(colorPicker)]="form.colors.colorForm"
+                                                [value]="form.colors.colorForm"
+                                                [cpPosition]="'bottom'"
+                                                [cpPresetColors]="form.default.colorForm"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+
+                    </tab>
+                    <tab title="Styles">
+                        This is content of the contacts tab
+                    </tab>
+                    <tab title="CSS">
+                        This is content of the contacts tab
+                    </tab>
+                    <tab title="Themes">
+                        This is content of the contacts tab
+                    </tab>
+                </tabset>
             </div>
         </div>
     </div>
