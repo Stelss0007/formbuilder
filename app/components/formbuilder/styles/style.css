@@ -126,5 +126,14 @@ form .form-elements-list:hover {
     color: inherit;
 }
 
+.panel.settings hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #a2a3a5;
+    border-top: 1px solid #4e4e4e;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
 
 

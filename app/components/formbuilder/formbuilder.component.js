@@ -18,6 +18,7 @@ var FormbuilderComponent = (function () {
         this.formService = new formbuilder_service_1.FormbuilderService();
         this.form = new Form();
         this.items = this.formService.getItems();
+        this.formStylesSettings = new FormStylesSettings();
         console.log(this.form);
     }
     FormbuilderComponent.prototype.addItemAfterDrop = function ($event) {
@@ -67,23 +68,51 @@ exports.FormbuilderComponent = FormbuilderComponent;
 var Form = (function () {
     function Form() {
         this.default = {
-            colors: ['#fff', '#000', '#2889e9', '#e920e9', '#fff500', 'rgb(236,64,64)'],
+            colors: ['#fff', '#000', '#2889e9', '#e920e9', '#333', 'rgb(236,64,64)'],
         };
         this.styles = {
             formWidth: '100%',
             labelAlign: 'top',
-            fontFamily: 'Arial',
+            fontFamily: 'Helvetica',
             fontSize: '12px',
         };
         this.name = 'Test Form Name';
         this.colors = {
             colorPage: 'none',
             colorForm: 'none',
-            colorFont: '#000',
+            colorFont: '#333',
         };
         this.items = [];
         this.css = "";
     }
     return Form;
+}());
+var FormStylesSettings = (function () {
+    function FormStylesSettings() {
+        this.fontFamilies = [
+            "Arial",
+            "Arial Black",
+            "Helvetica",
+            "Lucida Grande",
+            "Tahoma",
+            "Times New Roman",
+            "Verdana",
+        ];
+        this.fontSizes = [
+            "8px",
+            "10px",
+            "12px",
+            "14px",
+            "16px",
+            "18px",
+            "20px",
+        ];
+        this.formAligns = [
+            "top",
+            "left",
+            "right",
+        ];
+    }
+    return FormStylesSettings;
 }());
 //# sourceMappingURL=formbuilder.component.js.map

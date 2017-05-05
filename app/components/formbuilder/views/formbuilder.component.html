@@ -116,7 +116,7 @@
 
                             </div>
                         </div>
-
+                        <hr>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -137,7 +137,7 @@
 
                             </div>
                         </div>
-
+                        <hr>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -161,7 +161,50 @@
 
                     </tab>
                     <tab title="Styles">
-                        This is content of the contacts tab
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Form Width</label>
+                                    <input type="number" min="10" max="1200" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Label Alignment</label>
+                                    <select class="form-control">
+                                        <option value="top">Top</option>
+                                        <option value="left">Left</option>
+                                        <option value="right">Right</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Font Family</label>
+                                    <select class="form-control" [(ngModel)]="form.styles.fontFamily">
+                                        <option *ngFor="let item of formStylesSettings.fontFamilies" [ngValue]="item">{{item}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Font Size</label>
+                                    <select class="form-control">
+                                        <option value="8px">8px</option>
+                                        <option value="9px">9px</option>
+                                        <option value="10px">10px</option>
+                                        <option value="12px">12px</option>
+                                        <option value="14px">14px</option>
+                                        <option value="16px">16px</option>
+                                        <option value="18px">18px</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                     </tab>
                     <tab title="CSS">
                         This is content of the contacts tab

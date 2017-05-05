@@ -15,6 +15,8 @@ export class FormbuilderComponent {
     droppedItems:any = [];
     formService: FormbuilderService;
     form: Form;
+    formStylesSettings: FormStylesSettings;
+
 
     addItemAfterDrop($event: any) {
         //console.log($event);
@@ -59,6 +61,7 @@ export class FormbuilderComponent {
 
         this.form = new Form();
         this.items = this.formService.getItems();
+        this.formStylesSettings = new FormStylesSettings();
 
         console.log(this.form);
     }
@@ -67,20 +70,47 @@ export class FormbuilderComponent {
 
 class Form {
     default: any = {
-        colors: ['#fff', '#000', '#2889e9', '#e920e9', '#fff500', 'rgb(236,64,64)'],
+        colors: ['#fff', '#000', '#2889e9', '#e920e9', '#333', 'rgb(236,64,64)'],
     };
     styles: any =  {
         formWidth: '100%',
         labelAlign: 'top',
-        fontFamily: 'Arial',
+        fontFamily: 'Helvetica',
         fontSize: '12px',
     };
     name: string = 'Test Form Name';
     colors: any =   {
         colorPage: 'none',
         colorForm: 'none',
-        colorFont: '#000',
+        colorFont: '#333',
     };
     items: any = [];
     css: string = "";
+}
+
+class FormStylesSettings {
+    fontFamilies: any = [
+        "Arial",
+        "Arial Black",
+        "Helvetica",
+        "Lucida Grande",
+        "Tahoma",
+        "Times New Roman",
+        "Verdana",
+    ];
+    fontSizes: any = [
+        "8px",
+        "10px",
+        "12px",
+        "14px",
+        "16px",
+        "18px",
+        "20px",
+    ];
+
+    formAligns: any = [
+        "top",
+        "left",
+        "right",
+    ];
 }
