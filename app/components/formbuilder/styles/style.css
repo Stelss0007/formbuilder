@@ -1,26 +1,33 @@
+.form-palete {
+    overflow-y: auto;
+}
+
+.form-palete .panel-body {
+    border: 2px dashed transparent;
+}
 .dnd-drag-start {
     /*-moz-transform:scale(0.8);*/
     /*-webkit-transform:scale(0.8);*/
     /*transform:scale(0.8);*/
     opacity:0.7;
-    border: 2px dashed #000;
+    border: 2px dashed #545f6f;
 }
 
-.dnd-drag-enter {
+.form-palete  .dnd-drag-enter {
     opacity:0.7;
-    border: 2px dashed #000;
+    border: 2px dashed #545f6f;
 }
 
-.dnd-drag-over {
-    border: 2px dashed #000;
+.form-palete  .dnd-drag-over {
+    border: 2px dashed #545f6f;
 }
 
-.dnd-sortable-drag {
+.form-palete  .dnd-sortable-drag {
     /*-moz-transform:scale(0.9);*/
     /*-webkit-transform:scale(0.9);*/
     /*transform:scale(0.9);*/
     opacity:0.7;
-    border: 1px dashed #000;
+    border: 1px dashed #545f6f;
     padding: 10px 15px;
 }
 
@@ -102,6 +109,9 @@ form .form-group .control-panel i:hover {
 
 form .form-elements-list:hover {
     background: rgba(212, 212, 212, 0.2);
+    margin: 0 -10px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .avaiable-item {

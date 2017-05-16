@@ -33,7 +33,6 @@ var FormbuilderComponent = (function () {
         var elements = document.querySelectorAll("formbuilder .form-elements-list");
         var formbuilderOffsetTop = formbuilder.offsetTop + 100;
         for (var key = 0; key < elements.length; ++key) {
-            console.log('test');
             var element = elements[key];
             var elementTop = element.offsetTop + formbuilderOffsetTop;
             console.log(elementTop + '<' + $event.mouseEvent.pageY + ' && ' + (elementTop + element.offsetHeight) + '>' + $event.mouseEvent.pageY);

@@ -31,63 +31,65 @@
     </div>
     <div class="col-sm-6">
         <div class="panel panel-default form-palete">
-            <div class="panel-body"
-                 dnd-droppable
-                 (onDropSuccess)="addItemAfterDrop($event)"
-                 [dropZones]="['source-dropZone']"
-                 [style.background]="form.colors.colorPage"
-            >
-                <form
-                        dnd-sortable-container
-                        [sortableData]="form.items"
-                        [style.color]="form.colors.colorFont"
-                        [style.background]="form.colors.colorForm"
-                >
-                    <div class="form-elements-list" *ngFor="let item of form.items; let i = index" dnd-sortable [sortableIndex]="i">
-                        <div class="form-group" [ngSwitch]="item.type">
-                            <div class="control-panel">
-                                <i class="fa fa-arrows"></i>
-                                <i class="fa fa-cog" (click)="editItem(item)"></i>
-                                <i class="fa fa-remove" (click)="removeItem(item)"></i>
-                            </div>
 
-                            <div *ngSwitchCase="'textfield'">
-                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
-                                <input type="text" class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}">
-                            </div>
-                            <div *ngSwitchCase="'textarea'">
-                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
-                                <textarea class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}"></textarea>
-                            </div>
-                            <div *ngSwitchCase="'password'">
-                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
-                                <input type="password" class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}">
-                            </div>
-                            <div *ngSwitchCase="'number'">
-                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
-                                <input type="number" class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}">
-                            </div>
-                            <div *ngSwitchCase="'checkbox'">
-                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
-                                <input type="checkbox"  id="{{item.type}}_{{i}}" >
-                            </div>
-                            <div *ngSwitchCase="'radio'">
-                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
-                                <input type="radio"  id="{{item.type}}_{{i}}" >
-                            </div>
-                            <div *ngSwitchCase="'select'">
-                                <label for="{{item.type}}_{{i}}">{{item.label}}</label>
-                                <select class="form-control" id="{{item.type}}_{{i}}">
-                                    <option *ngFor="let option of item.options;" value="{{option}}">{{option}}</option>
-                                </select>
-                            </div>
-                            <div *ngSwitchCase="'text'">
-                                <div id="{{item.type}}_{{i}}" >{{item.content}}</div>
+                <div class="panel-body"
+                     dnd-droppable
+                     (onDropSuccess)="addItemAfterDrop($event)"
+                     [dropZones]="['source-dropZone']"
+                     [style.background]="form.colors.colorPage"
+                >
+                    <form
+                            dnd-sortable-container
+                            [sortableData]="form.items"
+                            [style.color]="form.colors.colorFont"
+                            [style.background]="form.colors.colorForm"
+                    >
+                        <div class="form-elements-list" *ngFor="let item of form.items; let i = index" dnd-sortable [sortableIndex]="i">
+                            <div class="form-group" [ngSwitch]="item.type">
+                                <div class="control-panel">
+                                    <i class="fa fa-arrows"></i>
+                                    <i class="fa fa-cog" (click)="editItem(item)"></i>
+                                    <i class="fa fa-remove" (click)="removeItem(item)"></i>
+                                </div>
+
+                                <div *ngSwitchCase="'textfield'">
+                                    <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                    <input type="text" class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}">
+                                </div>
+                                <div *ngSwitchCase="'textarea'">
+                                    <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                    <textarea class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}"></textarea>
+                                </div>
+                                <div *ngSwitchCase="'password'">
+                                    <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                    <input type="password" class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}">
+                                </div>
+                                <div *ngSwitchCase="'number'">
+                                    <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                    <input type="number" class="form-control" id="{{item.type}}_{{i}}" placeholder="{{item.placeholder}}">
+                                </div>
+                                <div *ngSwitchCase="'checkbox'">
+                                    <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                    <input type="checkbox"  id="{{item.type}}_{{i}}" >
+                                </div>
+                                <div *ngSwitchCase="'radio'">
+                                    <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                    <input type="radio"  id="{{item.type}}_{{i}}" >
+                                </div>
+                                <div *ngSwitchCase="'select'">
+                                    <label for="{{item.type}}_{{i}}">{{item.label}}</label>
+                                    <select class="form-control" id="{{item.type}}_{{i}}">
+                                        <option *ngFor="let option of item.options;" value="{{option}}">{{option}}</option>
+                                    </select>
+                                </div>
+                                <div *ngSwitchCase="'text'">
+                                    <div id="{{item.type}}_{{i}}" >{{item.content}}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+
         </div>
     </div>
     <div class="col-sm-3">
@@ -128,7 +130,7 @@
                                                 [(colorPicker)]="form.colors.colorPage"
                                                 [value]="form.colors.colorPage"
                                                 [cpPosition]="'bottom'"
-                                                [cpPresetColors]="form.default.colorPage"
+                                                [cpPresetColors]="form.default.colors"
                                         />
                                     </div>
                                 </div>
@@ -149,7 +151,7 @@
                                                 [(colorPicker)]="form.colors.colorForm"
                                                 [value]="form.colors.colorForm"
                                                 [cpPosition]="'bottom'"
-                                                [cpPresetColors]="form.default.colorForm"
+                                                [cpPresetColors]="form.default.colors"
                                         />
                                     </div>
                                 </div>

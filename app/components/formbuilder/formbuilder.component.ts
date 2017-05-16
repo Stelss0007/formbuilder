@@ -32,7 +32,6 @@ export class FormbuilderComponent {
         let formbuilderOffsetTop = formbuilder.offsetTop + 100;
 
         for (let key = 0; key < elements.length; ++key) {
-            console.log('test');
             let element = elements[key];
             let elementTop = element.offsetTop + formbuilderOffsetTop;
             console.log(elementTop + '<' + $event.mouseEvent.pageY + ' && ' + (elementTop  + element.offsetHeight) + '>' + $event.mouseEvent.pageY)
