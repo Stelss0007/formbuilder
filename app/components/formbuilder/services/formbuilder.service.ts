@@ -507,4 +507,63 @@ export class FormbuilderService {
             this.components.splice(index, 1);
         }
     }
+
+    getForm():any {
+        let form = localStorage.getItem('form');
+        form = form ? JSON.parse(form) : null;
+
+        return form || new Form();
+    }
+
+    saveForm(form:any):any {
+        localStorage.setItem('form', form);
+    }
+}
+
+
+export class Form {
+    default: any = {
+        colors: ['#fff', '#000', '#2889e9', '#e920e9', '#333', 'rgb(236,64,64)'],
+    };
+    styles: any =  {
+        formWidth: '100%',
+        labelAlign: 'top',
+        fontFamily: 'Helvetica',
+        fontSize: '12px',
+    };
+    name: string = 'Test Form Name';
+    colors: any =   {
+        colorPage: 'none',
+        colorForm: 'none',
+        colorFont: '#333',
+    };
+    items: any = [];
+    css: string = "";
+}
+
+export class FormStylesSettings {
+    fontFamilies: any = [
+        "Arial",
+        "Arial Black",
+        "Helvetica",
+        "Lucida Grande",
+        "Tahoma",
+        "Times New Roman",
+        "Verdana",
+    ];
+    fontSizes: any = [
+        "8px",
+        "10px",
+        "12px",
+        "14px",
+        "16px",
+        "18px",
+        "20px",
+    ];
+
+    formAligns: any = [
+        "top",
+        "left",
+        "right",
+    ];
 }

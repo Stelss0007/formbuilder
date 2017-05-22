@@ -1,6 +1,6 @@
-import { Component, ViewContainerRef } from '@angular/core';
-import { FormbuilderService } from './services/formbuilder.service';
-import {ColorPickerService} from 'angular2-color-picker';
+import {Component, DoCheck} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormbuilderService, Form, FormStylesSettings } from './services/formbuilder.service';
 
 @Component({
     selector: 'formbuilder',
@@ -10,12 +10,15 @@ import {ColorPickerService} from 'angular2-color-picker';
     providers: [FormbuilderService],
 })
 
-export class FormbuilderComponent {
+export class FormbuilderComponent implements DoCheck{
     items:any [];
     droppedItems:any = [];
     formService: FormbuilderService;
     form: Form;
+    formTemp: any;
+    interval: any;
     formStylesSettings: FormStylesSettings;
+    formId: number;
 
 
     addItemAfterDrop($event: any) {
@@ -43,6 +46,13 @@ export class FormbuilderComponent {
         return elements.length;
     }
 
+    checkFormUpdate() {
+        if(this.formTemp != JSON.stringify(this.form)) {
+            this.formTemp = JSON.stringify(this.form);
+            this.formService.saveForm(this.formTemp);
+        }
+    }
+
     addItem(item: any) {
         this.form.items.push(item);
     }
@@ -54,62 +64,35 @@ export class FormbuilderComponent {
         }
     }
 
+    ngDoCheck() {
 
-    constructor(private cpService: ColorPickerService) {
+    }
+
+    ngOnInit(){
+        this.interval = setInterval(() => {
+            this.checkFormUpdate();
+        }, 2000);
+    }
+
+    ngOnDestroy() {
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
+    }
+
+    constructor(
+        private route: ActivatedRoute
+    ) {
         this.formService = new FormbuilderService();
-
-        this.form = new Form();
+        this.route.params.subscribe(params => {
+            this.formId = params['id'];
+        });
+        this.form = this.formService.getForm();
         this.items = this.formService.getItems();
         this.formStylesSettings = new FormStylesSettings();
+
 
         console.log(this.form);
     }
 
-}
-
-class Form {
-    default: any = {
-        colors: ['#fff', '#000', '#2889e9', '#e920e9', '#333', 'rgb(236,64,64)'],
-    };
-    styles: any =  {
-        formWidth: '100%',
-        labelAlign: 'top',
-        fontFamily: 'Helvetica',
-        fontSize: '12px',
-    };
-    name: string = 'Test Form Name';
-    colors: any =   {
-        colorPage: 'none',
-        colorForm: 'none',
-        colorFont: '#333',
-    };
-    items: any = [];
-    css: string = "";
-}
-
-class FormStylesSettings {
-    fontFamilies: any = [
-        "Arial",
-        "Arial Black",
-        "Helvetica",
-        "Lucida Grande",
-        "Tahoma",
-        "Times New Roman",
-        "Verdana",
-    ];
-    fontSizes: any = [
-        "8px",
-        "10px",
-        "12px",
-        "14px",
-        "16px",
-        "18px",
-        "20px",
-    ];
-
-    formAligns: any = [
-        "top",
-        "left",
-        "right",
-    ];
 }

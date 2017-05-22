@@ -499,6 +499,14 @@ var FormbuilderService = (function () {
             this.components.splice(index, 1);
         }
     };
+    FormbuilderService.prototype.getForm = function () {
+        var form = localStorage.getItem('form');
+        form = form ? JSON.parse(form) : null;
+        return form || new Form();
+    };
+    FormbuilderService.prototype.saveForm = function (form) {
+        localStorage.setItem('form', form);
+    };
     return FormbuilderService;
 }());
 FormbuilderService = __decorate([
@@ -507,4 +515,56 @@ FormbuilderService = __decorate([
     __metadata("design:paramtypes", [])
 ], FormbuilderService);
 exports.FormbuilderService = FormbuilderService;
+var Form = (function () {
+    function Form() {
+        this.default = {
+            colors: ['#fff', '#000', '#2889e9', '#e920e9', '#333', 'rgb(236,64,64)'],
+        };
+        this.styles = {
+            formWidth: '100%',
+            labelAlign: 'top',
+            fontFamily: 'Helvetica',
+            fontSize: '12px',
+        };
+        this.name = 'Test Form Name';
+        this.colors = {
+            colorPage: 'none',
+            colorForm: 'none',
+            colorFont: '#333',
+        };
+        this.items = [];
+        this.css = "";
+    }
+    return Form;
+}());
+exports.Form = Form;
+var FormStylesSettings = (function () {
+    function FormStylesSettings() {
+        this.fontFamilies = [
+            "Arial",
+            "Arial Black",
+            "Helvetica",
+            "Lucida Grande",
+            "Tahoma",
+            "Times New Roman",
+            "Verdana",
+        ];
+        this.fontSizes = [
+            "8px",
+            "10px",
+            "12px",
+            "14px",
+            "16px",
+            "18px",
+            "20px",
+        ];
+        this.formAligns = [
+            "top",
+            "left",
+            "right",
+        ];
+    }
+    return FormStylesSettings;
+}());
+exports.FormStylesSettings = FormStylesSettings;
 //# sourceMappingURL=formbuilder.service.js.map

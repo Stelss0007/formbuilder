@@ -27,6 +27,7 @@ var appRoutes = [
     { path: 'about', component: about_component_1.AboutComponent },
     { path: 'shop', component: shop_component_1.ShopComponent },
     { path: 'contacts', component: contacts_component_1.ContactComponent },
+    { path: 'formbuilder/:id', component: formbuilder_component_1.FormbuilderComponent },
     { path: 'formbuilder', component: formbuilder_component_1.FormbuilderComponent },
 ];
 // Настройка модуля

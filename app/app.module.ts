@@ -23,6 +23,7 @@ const appRoutes: Routes =[
     { path: 'about', component: AboutComponent},
     { path: 'shop', component: ShopComponent},
     { path: 'contacts', component: ContactComponent},
+    { path: 'formbuilder/:id', component: FormbuilderComponent},
     { path: 'formbuilder', component: FormbuilderComponent},
 ];
 

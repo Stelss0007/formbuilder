@@ -9,16 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var formbuilder_service_1 = require("./services/formbuilder.service");
-var angular2_color_picker_1 = require("angular2-color-picker");
 var FormbuilderComponent = (function () {
-    function FormbuilderComponent(cpService) {
-        this.cpService = cpService;
+    function FormbuilderComponent(route) {
+        var _this = this;
+        this.route = route;
         this.droppedItems = [];
         this.formService = new formbuilder_service_1.FormbuilderService();
-        this.form = new Form();
+        this.route.params.subscribe(function (params) {
+            _this.formId = params['id'];
+        });
+        this.form = this.formService.getForm();
         this.items = this.formService.getItems();
-        this.formStylesSettings = new FormStylesSettings();
+        this.formStylesSettings = new formbuilder_service_1.FormStylesSettings();
         console.log(this.form);
     }
     FormbuilderComponent.prototype.addItemAfterDrop = function ($event) {
@@ -42,6 +46,12 @@ var FormbuilderComponent = (function () {
         }
         return elements.length;
     };
+    FormbuilderComponent.prototype.checkFormUpdate = function () {
+        if (this.formTemp != JSON.stringify(this.form)) {
+            this.formTemp = JSON.stringify(this.form);
+            this.formService.saveForm(this.formTemp);
+        }
+    };
     FormbuilderComponent.prototype.addItem = function (item) {
         this.form.items.push(item);
     };
@@ -49,6 +59,19 @@ var FormbuilderComponent = (function () {
         var index = this.form.items.indexOf(item);
         if (index !== -1) {
             this.form.items.splice(index, 1);
+        }
+    };
+    FormbuilderComponent.prototype.ngDoCheck = function () {
+    };
+    FormbuilderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.interval = setInterval(function () {
+            _this.checkFormUpdate();
+        }, 2000);
+    };
+    FormbuilderComponent.prototype.ngOnDestroy = function () {
+        if (this.interval) {
+            clearInterval(this.interval);
         }
     };
     return FormbuilderComponent;
@@ -61,57 +84,7 @@ FormbuilderComponent = __decorate([
         styleUrls: ['styles/style.css'],
         providers: [formbuilder_service_1.FormbuilderService],
     }),
-    __metadata("design:paramtypes", [angular2_color_picker_1.ColorPickerService])
+    __metadata("design:paramtypes", [router_1.ActivatedRoute])
 ], FormbuilderComponent);
 exports.FormbuilderComponent = FormbuilderComponent;
-var Form = (function () {
-    function Form() {
-        this.default = {
-            colors: ['#fff', '#000', '#2889e9', '#e920e9', '#333', 'rgb(236,64,64)'],
-        };
-        this.styles = {
-            formWidth: '100%',
-            labelAlign: 'top',
-            fontFamily: 'Helvetica',
-            fontSize: '12px',
-        };
-        this.name = 'Test Form Name';
-        this.colors = {
-            colorPage: 'none',
-            colorForm: 'none',
-            colorFont: '#333',
-        };
-        this.items = [];
-        this.css = "";
-    }
-    return Form;
-}());
-var FormStylesSettings = (function () {
-    function FormStylesSettings() {
-        this.fontFamilies = [
-            "Arial",
-            "Arial Black",
-            "Helvetica",
-            "Lucida Grande",
-            "Tahoma",
-            "Times New Roman",
-            "Verdana",
-        ];
-        this.fontSizes = [
-            "8px",
-            "10px",
-            "12px",
-            "14px",
-            "16px",
-            "18px",
-            "20px",
-        ];
-        this.formAligns = [
-            "top",
-            "left",
-            "right",
-        ];
-    }
-    return FormStylesSettings;
-}());
 //# sourceMappingURL=formbuilder.component.js.map
