@@ -35,12 +35,14 @@ var FormbuilderComponent = (function () {
     FormbuilderComponent.prototype.checkPosition = function ($event) {
         var formbuilder = document.querySelector("formbuilder");
         var elements = document.querySelectorAll("formbuilder .form-elements-list");
-        var formbuilderOffsetTop = formbuilder.offsetTop + 100;
-        for (var key = 0; key < elements.length; ++key) {
+        var parrentConteinerTop = document.querySelector('.form-palete').scrollTop;
+        var formbuilderOffsetTop = formbuilder.offsetTop;
+        var elementsCount = elements.length;
+        for (var key = 0; key < elementsCount; ++key) {
             var element = elements[key];
             var elementTop = element.offsetTop + formbuilderOffsetTop;
-            console.log(elementTop + '<' + $event.mouseEvent.pageY + ' && ' + (elementTop + element.offsetHeight) + '>' + $event.mouseEvent.pageY);
-            if (elementTop < $event.mouseEvent.pageY && (elementTop + element.offsetHeight) > $event.mouseEvent.pageY) {
+            // console.log(element.offsetTop +' => '+ ($event.mouseEvent.pageY + parrentConteinerTop));
+            if (elementTop < ($event.mouseEvent.pageY + parrentConteinerTop) && (elementTop + element.offsetHeight) > ($event.mouseEvent.pageY + parrentConteinerTop)) {
                 return key;
             }
         }
